@@ -1,0 +1,42 @@
+{
+    "name": "bumpcore/court",
+    "description": "An extremely minimal validation framework.",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "BumpCore\\Court\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "BumpCore\\Court\\Tests\\": "tests/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Abdulkadir Cemiloğlu",
+            "email": "kadir.cemiloglu1@gmail.com"
+        }
+    ],
+    "require-dev": {
+        "phpunit/phpunit": "^12.3",
+        "laravel/framework": "^12.31",
+        "orchestra/testbench": "^10.6",
+        "friendsofphp/php-cs-fixer": "^3.88",
+        "phpstan/phpstan": "^2.1"
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit --colors=always --testdox",
+        "test:coverage": "XDEBUG_MODE=coverage vendor/bin/phpunit --colors=always --testdox --coverage-html coverage",
+        "cs-fix": "vendor/bin/php-cs-fixer fix",
+        "phpstan": "vendor/bin/phpstan analyse -c phpstan.neon"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "BumpCore\\Court\\CourtServiceProvider"
+            ]
+        }
+    }
+}
