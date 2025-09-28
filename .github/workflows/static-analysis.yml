@@ -1,0 +1,38 @@
+name: Static Analysis
+
+on:
+  push:
+    branches:
+    - master
+    - "*.x"
+  pull_request:
+
+
+jobs:
+  phpstan:
+    runs-on: ubuntu-latest
+    name: PHPStan Analysis
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: 8.4
+        coverage: none
+
+    - name: Cache Composer dependencies
+      uses: actions/cache@v4
+      with:
+        path: vendor
+        key: ${{ runner.os }}-php8.4-phpstan-composer-${{ hashFiles('**/composer.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-php8.4-phpstan-composer-
+
+    - name: Install dependencies
+      run: composer install --no-progress --prefer-dist --optimize-autoloader
+
+    - name: Run PHPStan
+      run: composer phpstan
