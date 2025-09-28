@@ -47,6 +47,10 @@ if ($verdict->isNotEmpty()) {
 }
 ```
 
+## Philosophy
+
+Court is not built for replacing existing validation solutions like Laravel's or Symfony's validation components. Instead, it's meant to be used alongside them, providing a simple way to enforce business rules and complex validation logic that doesn't fit neatly into traditional validation paradigms. Nonetheless, the extendible nature of Court allows you to build your own validation framework on top of it if you wish.
+
 ## Core Concepts
 
 ### Subject

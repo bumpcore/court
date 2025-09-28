@@ -3,9 +3,11 @@
 namespace BumpCore\Court\Tests\Integration;
 
 use BumpCore\Court\Factory;
-use Orchestra\Testbench\PHPUnit\TestCase;
+use BumpCore\Court\Tests\LaravelTestCase;
+use PHPUnit\Framework\Attributes\Group;
 
-class CourtServiceProviderTest extends TestCase
+#[Group('integration')]
+class CourtServiceProviderTest extends LaravelTestCase
 {
     public function test_boot_sets_guard_resolver()
     {
