@@ -54,6 +54,16 @@ class GuardResolverTest extends TestCase
         $this->assertTrue(TestHandleGuard::$called);
     }
 
+    public function test_resolve_callable_class_method()
+    {
+        $resolver = new GuardResolver();
+        $guard = [TestCallableGuard::class, 'someMethod'];
+
+        $resolved = $resolver($guard);
+        $resolved('subject', null);
+        $this->assertTrue(TestCallableGuard::$called);
+    }
+
     public function test_invalid_guard_throws_exception()
     {
         $resolver = new GuardResolver();
@@ -62,6 +72,17 @@ class GuardResolverTest extends TestCase
         $this->expectExceptionMessage('Guard must be a callable, or a class name of an invokable class, or a class with a "verdict" or "handle" method.');
 
         $resolver(123);
+    }
+
+    public function test_invalid_class_guard_throws_exception()
+    {
+        $resolver = new GuardResolver();
+        $guard = \stdClass::class;
+
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Guard must be a callable, or a class name of an invokable class, or a class with a "verdict" or "handle" method.');
+
+        $resolver($guard);
     }
 }
 
@@ -90,6 +111,16 @@ class TestHandleGuard
     public static $called = false;
 
     public function handle($subject, $objection)
+    {
+        self::$called = true;
+    }
+}
+
+class TestCallableGuard
+{
+    public static $called = false;
+
+    public static function someMethod($subject, $objection)
     {
         self::$called = true;
     }
