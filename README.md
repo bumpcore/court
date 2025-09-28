@@ -8,9 +8,9 @@ This package works out of the box, though it is also highly extensible. You can 
 
 ## Version Table
 
-| Court | PHP |
-|-------|-----|
-| 1.x   | >=7.4 |
+| Court | PHP  | Laravel |
+|-------|------|---------|
+| 1.x   | ^8.2 | ^11.0   |
 
 ## Installation
 
