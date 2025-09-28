@@ -1,6 +1,6 @@
 {
     "name": "bumpcore/court",
-    "description": "An extremely minimal validation framework.",
+    "description": "A featherweight, complementary validation pipeline. ",
     "type": "library",
     "license": "MIT",
     "autoload": {
